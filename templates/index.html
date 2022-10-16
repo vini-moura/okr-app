@@ -15,7 +15,7 @@
 		</div>
 		<div class="rowtext">
 			<h3>{{usuario[0].nome}}</h3>
-			<h5>cargo do Joe Doe</h5>
+			<h5>cargo de {{usuario[0].nome}}</h5>
 		</div>
 		<div class="rowtext">
 			<meter value = {{media_total}} max="100"></meter>
@@ -41,20 +41,25 @@
 	</section>
 	<!-- -->
 	<section class="okrBlock">
-		{%for o in objetivos:%}
+		{%for i in objetivos:%}
 		<ul>
-			<li> <h3>{{o.obj}}</h3> </li>
-				<li>
-					{%for krs in krs:%}
-						{%if krs.id_obj in o.id%}
-						<ul>
-							<li>{{krs.texto}}</li>
-						</ul>
-						{%endif%}
-					{%endfor%}
-				</li>
+			<li>
+				<h3>{{i.obj}}</h3>
+			</li>
+
+			<li>
+				{%for k in krs:%}
+					{%if k.id_obj == i.id:%}
+					<ul>
+						<li><h4>{{k.texto}}</h4></li>
+					</ul>
+					{%endif%}
+				{%endfor%}
+			</li>
 		</ul>
 		{%endfor%}
+
+
 	</section>
 
 
