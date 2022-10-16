@@ -1,0 +1,14 @@
+[
+    {
+        "id": "0",
+        "nome": "vinicius oliveira",
+        "time": ["pessoal","trabalho"],
+        "email": "viniciusoliveira@vivaldi.net"
+    },
+    {
+        "id": "2",
+        "nome": "priscila ribeiro",
+        "time": "empresa",
+        "email": "priscila_oliveira_ribeiro@hotmail.com"
+    }
+]

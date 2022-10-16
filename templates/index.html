@@ -6,26 +6,30 @@
     <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
+
+
 	<!-- -->
 	<section id="top-row">
 		<div class="imageBlock">
 			<img class='fotoPerfil' src="static/imagens/perfil.jpg" alt="">
 		</div>
 		<div class="rowtext">
-			<h3>Joe Doe</h3>
+			<h3>{{usuario[0].nome}}</h3>
 			<h5>cargo do Joe Doe</h5>
 		</div>
 		<div class="rowtext">
-			<h3>grafico de barras</h3>
+			<meter value = {{media_total}} max="100"></meter>
 		</div>
 		<div class="rowtext">
 			<h5>Time</h5>
-			<h3>Marketing</h3>
+			<h3>{{usuario[0].time[0]}}</h3>
 		</div>
 		<div class="imageBlock">
 			<img class='fotoPerfil' src="static/imagens/ordenar dec.png" alt="">
 		</div>
 	</section>
+
+
 	<!-- -->
 	<section class="filter-bar">
 		<div  class="rowtext">
@@ -37,27 +41,23 @@
 	</section>
 	<!-- -->
 	<section class="okrBlock">
+		{%for o in objetivos:%}
 		<ul>
-			<li>Objetivo 1</li>
+			<li> <h3>{{o.obj}}</h3> </li>
 				<li>
-					<ol>
-						<li>Resultado chave 1</li>
-						<li>Resultado chave 2</li>
-						<li>Resultado chave 3</li>
-					</ol>
+					{%for krs in krs:%}
+						{%if krs.id_obj in o.id%}
+						<ul>
+							<li>{{krs.texto}}</li>
+						</ul>
+						{%endif%}
+					{%endfor%}
 				</li>
 		</ul>
-		<ul>
-			<li>Objetivo 2</li>
-				<li>
-					<ul>
-						<li>Resultado chave 1</li>
-						<li>Resultado chave 2</li>
-						<li>Resultado chave 3</li>
-					</ul>
-				</li>
-		</ul>
+		{%endfor%}
 	</section>
+
+
 	<!-- -->
 	<section class="progresso">
 		<div>
