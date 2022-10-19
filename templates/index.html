@@ -1,93 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <title>Vini app</title>
     <meta charset="UTF-8">
-    <title>Vini OKR app</title>
-    <link rel="stylesheet" href="static/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
 </head>
+
 <body>
+  <!--TOPBAR-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class = "navbar-brand" href="">OKR</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo">>
+
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class='nav-link' href=""> Contact </a></li>
+                <li class="nav-item"><a class='nav-link' href=""> Pricing </a></li>
+                <li class="nav-item"><a class='nav-link' href=""> <img src="static/imagens/perfil.jpg" alt=""> </a></li>
+            </ul>
+        </div>
+    </nav>
 
 
-	<!-- -->
-	<section id="top-row">
-		<div class="imageBlock">
-			<img class='fotoPerfil' src="static/imagens/perfil.jpg" alt="">
-		</div>
-		<div class="rowtext">
-			<h3>{{usuario[0].nome}}</h3>
-			<h5>cargo de {{usuario[0].nome}}</h5>
-		</div>
-		<div class="rowtext">
-			<meter value = {{media_total}} max="100"></meter>
-		</div>
-		<div class="rowtext">
-			<h5>Time</h5>
-			<h3>{{usuario[0].time[0]}}</h3>
-		</div>
-		<div class="imageBlock">
-			<img class='fotoPerfil' src="static/imagens/ordenar dec.png" alt="">
-		</div>
-	</section>
+  <!--TOPBAR-->
 
+   <!--SIDEBAR-->
+   
+   <!--SIDEBAR-->
 
-	<!-- -->
-	<section class="filter-bar">
-		<div  class="rowtext">
-			<h3>em progresso</h3>
-		</div>
-		<div  class="rowtext">
-			filtro do periodo
-		</div>
-	</section>
-	<!-- -->
-	<section class="okrBlock">
-		{%for i in objetivos:%}
-		<ul>
-			<li>
-				<h3>{{i.obj}}</h3>
-			</li>
+  <div class="height-100 bg-light">
+        <h4>Main Components</h4>
+  </div>
 
-			<li>
-				{%for k in krs:%}
-					{%if k.id_obj == i.id:%}
-					<ul>
-						<li><h4>{{k.texto}}</h4></li>
-					</ul>
-					{%endif%}
-				{%endfor%}
-			</li>
-		</ul>
-		{%endfor%}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
 
-
-	</section>
-
-
-	<!-- -->
-	<section class="progresso">
-		<div>
-			<h1>tabela com historico de atualizações (3 p's)</h1>
-		</div>
-		<div>
-			<h2>Grafico com progresso do kr selecionado</h2>
-		</div>
-	</section>
-	<!-- -->
-	<section class="sidebar">
-		<div>
-			<ul>
-				<li><a href="index.html"><img class='botaoMenu' src="static/imagens/home.png" alt=""></a></li>
-				<li><a href="perfil.html"><img class='botaoMenu' src="static/imagens/conta.png" alt=""></a></li>
-				<li><a href="cadastro de okr.html"><img class='botaoMenu' src="static/imagens/lightbulb.png" alt=""></a></li>
-			</ul>
-		</div>
-		<div class='botaoMenuFundo'>
-			<ul>
-				<li><a href="settings.html"><img class="botaoFundo" src="static/imagens/config.png" alt=""></a></li>
-			</ul>
-		</div>
-	</section>
-
-<!-- -->
 </body>
 </html>
