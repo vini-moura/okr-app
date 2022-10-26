@@ -1,6 +1,7 @@
 [
     {
         "id": 0,
+        "num": 1,
         "id_obj": 0,
         "setor": "pessoal",
         "texto": "entregar 7 resenhas de brasileira",
@@ -15,6 +16,7 @@
     },
     {
         "id": 1,
+        "num": 2,
         "id_obj": 0,
         "setor": "pessoal",
         "texto": "entregar 1 artigo de ambiental",
@@ -29,7 +31,8 @@
     },
     {
         "id": 2,
-        "id_obj": 2,
+        "num": 1,
+        "id_obj": 0,
         "setor": "pessoal",
         "texto": "ler 5 capitulos de micro 2",
         "tipo": "a",
@@ -43,6 +46,7 @@
     },
     {
         "id": 3,
+        "num": 1,
         "id_obj": 2,
         "setor": "diretoria",
         "texto": "Terminar mais 12 módulos do Curso de Python",
@@ -57,6 +61,7 @@
     },
     {
         "id": 4,
+        "num": 2,
         "id_obj": 2,
         "setor": "diretoria",
         "texto": "Entregar MVP do app OKR",

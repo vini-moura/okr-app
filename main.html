@@ -1,0 +1,46 @@
+{%for o in objetivos:%}
+<div class="accordion" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        {{o.texto}}
+      </button>
+    </h2>
+    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <table class="table" style="text-align: center;">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Resultado Chave</th>
+              <th scope="col">Responsável</th>
+              <th scope="col">inicial</th>
+              <th scope="col">meta</th>
+              <th scope="col">atual</th>
+              <th scope="col">Gráfico</th>
+            </tr>
+          </thead>
+          <tbody>
+          {%for k in krs:%}
+            {%if k.id_obj == o.id:%}
+            <tr>
+              <th scope="row">1</th>
+              <td>k.texto</td>
+              <td>k.responsavel</td>
+              <td>k.inicial</td>
+              <td>k.meta</td>
+              <td>k.atual</td>
+              <td>
+              <div class="progress">
+                <div class="progress-bar bg-success" style="width: {{k.p}}%" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </td>
+            </tr>
+            {%endif%}
+          {%endfor%}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {%endfor%}
