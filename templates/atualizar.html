@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- meu css link -->
     <link rel="stylesheet" href="../static/css/style4.css">
-    <link href="../static/js/front.js">
-    <!-- Jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   <body>
         <div class="wrapper" >
@@ -27,8 +24,8 @@
           <hr>
           <ul class="list-unstyled components">
             <li> <a href={{url_for('monitorar')}}> <i class="fa fa-bar-chart"></i> Monitorar </a>  </li>
-            <li>  <a href={{url_for('atualizar')}}> <i class="fa fa-pencil-square-o"></i> Atualizar </a>  </li>
-            <li class="active">  <a href="#"> <i class="fa fa-copy"></i> Cadastrar </a>  </li>
+            <li class="active">  <a href="#"> <i class="fa fa-pencil-square-o"></i> Atualizar </a>  </li>
+            <li>  <a href={{url_for('cadastrar')}}> <i class="fa fa-copy"></i> Cadastrar </a>  </li>
             <li>  <a href="#"> <i class="fa fa-dashboard"></i> Dashboard </a>  </li>
             <li>  <a href="#">  <i class="fa fa-user-circle-o"></i>  Perfil  </a>  </li>
             <li>  <a href="#">  <i class="fa fa-paper-plane"></i>  Contact </a>  </li>
@@ -61,8 +58,8 @@
           </nav>
 
           <form>
-              <label  class="form-label">Selecione o Setor do Novo OKR</label>
-              <select id="okr_setor" class="form-select" aria-label="Default select example">
+              <label  class="form-label">Selecione Setor dono do OKR</label>
+              <select class="form-select" aria-label="Default select example">
 
                   <option value="1">Setor 1</option>
                   <option value="2">Setor 2</option>
@@ -70,64 +67,41 @@
                   <option value="4">Setor 4</option>
               </select>
               <br>
-              <label id="okr_texto" class="form-label">Texto do OKR </label>
-              <textarea class="form-control" rows="2"></textarea>
-              <br>
+              <label  class="form-label">Selecione o OKR a ser atualizado</label>
+              <select class="form-select" aria-label="Default select example">
 
+                  <option selected>okr1</option>
+                  <option value="1">okr2</option>
+                  <option value="2">okr3</option>
+                  <option value="3">okr4</option>
+              </select>
+              <br>
+              <label class="form-label">Selecione o KR a ser atualizado</label>
+              <select class="form-select" aria-label="Default select example">
+
+                  <option selected>KR1</option>
+                  <option value="1">KR2</option>
+                  <option value="2">KR3</option>
+                  <option value="3">KR4</option>
+              </select>
               <br>
               <div class="row">
-                  <div class="col-3">
+                  <div class="col-8">
                       <div class="">
-                        <label class="form-label">Ano</label>
-                        <select id="ano_okr" class="form-select" aria-label="Default select example">
-                          <option value="1">2023</option>
-                          <option value="2">2024</option>
-                          <option value="3">2025</option>
-                          <option value="4">2026</option>
-                        </select>
+                        <label class="form-label">Problema/Progresso/Plano</label>
+                        <textarea class="form-control" rows="3"></textarea>
                       </div>
                   </div>
                   <div class="col-3">
                       <div class="">
-                        <label class="form-label">Trimestre</label>
-                        <select id="tri_okr" class="form-select" aria-label="Default select example">
-                          <option value="1">Jan-Mar</option>
-                          <option value="2">Abr-Jun</option>
-                          <option value="3">Jul-Set</option>
-                          <option value="4">Out-Dez</option>
-                        </select>
-                      </div>
-                  </div>
-                  <div class="col-3">
-                      <div class="">
-                        <label class="form-label">Quantos KRs deseja?</label>
-                        <input class="form-control" type="number">
+                        <label class="form-label">Valor atual: {{valor}}</label>
+                        <textarea class="form-control"  rows="1"></textarea>
                       </div>
                   </div>
               </div>
               <br>
-              <button id="btn_submit" type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
             </form>
-            <h1>
-                <script>
-                    $("document").ready(funciton(){
-                        $("#btn_submit").click(function(){
-                            var setor = $("okr_setor")
-                            var texto = $("okr_texto")
-                            var ano = $("ano_okr")
-                            var trimestre = $("tri_okr").val()
-                            $.ajax({
-                                url: "http://127.0.0.1:5000/cadastrar",
-                                type: "POST",
-                                contentType: "application/json",
-                                data: JSON.stringify({
-                                                        "setor": setor,
-                                                        "texto": texto,
-                                                        "ano": ano,
-                                                        "trimestre": trimestre})
-
-                </script>
-            </h1>
 
 
               <div class="line" id=""></div>

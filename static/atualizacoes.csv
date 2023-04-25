@@ -1,0 +1,4 @@
+id_atualizacao,id_user,user,id_obj,id_kr,ppp,atual,data
+0,0,vinicius,0,0,teste,0,
+1,1,viniciusmoura,2,4,"Terminado backend de cadastro, atualização e monitoramento, além da interface de usuário. O plano agora é fazer verificador de cadastro e iniciar o frontend e o cadastro de times",2
+2,1,viniciusmoura,2,5,puxando páginas semi-prontas do projeto anterior,1
