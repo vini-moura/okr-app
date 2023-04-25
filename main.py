@@ -1,48 +1,53 @@
-from okr_class import *
-import json
+#caroline.yamazato@ufms.br
 
-with open('json/obj.json', 'r') as f:
-    file_obj = json.load(f)
-with open('json/users.json', 'r') as f:
-    file_user = json.load(f)
-with open('json/resultadoschave.json', 'r') as f:
-    file_rcs = json.load(f)
+from okr import *
+from users import *
+from ciclo import *
+from pandas import *
 
-nome = 'vinicius oliveira'
-log_user = [i for i in file_user if i['nome'] in nome]
-list_time = [i['time'] for i in file_user if i['nome'] in nome]
-times = [i for group in list_time for i in group]
-selecionados = [i for i in file_obj if i['time'] in times]
+print("Bem vindo ao app okr por vinicius oliveira\n")
 
+on = True
+while on:
+    escolha = input("Digite 1 para fazer login, 2 para cadastrar novo usuário ou 3 para sair:  ")
 
-usuario = []
-for u in log_user:
-    a = User(u['id'], u['nome'], u['time'], u['time'])
-    usuario.append(a)
+    if escolha == '1':
+        usuario = login()
 
-objetivos=[Objetivo(o['id'], o['time'], o['setor'], o['obj'], o['responsavel'], o['ano'], o['ciclo']) for o in
-           selecionados]
+        while usuario != 0:
+            obj = read_csv('static/okr.csv')
+            krs = read_csv("static/krs.csv")
+            t_u = read_csv('static/times_users.csv')
 
-ids_obj = [o['id'] for o in selecionados]
+            a = t_u[t_u['id_user'] == usuario].values.flatten().tolist()
 
+            o = Okr(usuario, a[2], a[0], a[1])
+            c = Ciclo()
+            c.ciclo_def()
 
-rc_selecionados = [i for i in file_rcs if i['id_obj'] in ids_obj]
-krs = []
-for rc in rc_selecionados:
-    # id1, id_obj, setor, texto, tipo, inicial, mudar, meta, responsavel, status, atual, p
-    a = ResultadoChave(rc['id'], rc['id_obj'],
-                       rc['setor'], rc['texto'],
-                       rc['tipo'], rc['inicial'],
-                       rc['mudar'], rc['meta'],
-                       rc['responsavel'], rc['status'],
-                       rc['atual'], rc['p'])
-    krs.append(a)
+            obj_f = obj[obj['id_time'] == o.id_time]
+            b = krs.id_obj.isin(obj_f.id_obj)
+            krs_f = krs[b]
 
+            acao = input("\nDigite 1 para cadastrar, 2 para atualizar e 3 para monitorar um OKR:  ")
 
-media_total = 0
-for i in krs:
-    print(f'adicionando: {i.atual}')
-    media_total += i.atual
-    print(f"soma: {media_total}")
+            if acao == "1":
+                o.cadastrar_okr(obj, krs)
+            elif acao == "2":
+                o.atualizar_kr(obj_f, krs_f, c.trimestre, c.ano)
+            elif acao == "3":
+                o.monitorar_okr(obj_f, krs_f, c.trimestre, c.ano)
+            elif acao == "sair" or acao == 'exit' or acao == 's' or acao == 'e' or acao == '4':
+                usuario = 0
 
-print(media_total)
+            else:
+                pass
+
+    elif escolha == '2':
+        cadastro()
+
+    elif escolha == '3':
+        on = False
+
+    else:
+        pass

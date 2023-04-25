@@ -2,6 +2,7 @@
     {
         "id": "0",
         "nome": "vinicius oliveira",
+        "cargo": "estagiário",
         "time": ["pessoal","trabalho"],
         "email": "viniciusoliveira@vivaldi.net"
     },

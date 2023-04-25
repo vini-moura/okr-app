@@ -10,14 +10,15 @@ class Objetivo:
         self.id = id1
         self.time = time
         self.setor= setor
-        self.obj = obj
+        self.texto = obj
         self.responsavel = responsavel
         self.ano = ano
         self.ciclo = ciclo
 
 class ResultadoChave:
-    def __init__(self, id1, id_obj, setor, texto, tipo, inicial, mudar, meta, responsavel, status, atual, p):
+    def __init__(self, id1, num, id_obj, setor, texto, tipo, inicial, mudar, meta, responsavel, status, atual, p):
         self.id1 = id1
+        self.num= num
         self.id_obj = id_obj
         self.setor = setor
         self.texto = texto
