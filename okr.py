@@ -7,16 +7,10 @@ class Okr:
         self.id_time = id_time
         self.time = time
 
-    def cadastrar_okr(self, obj, krs):
+    def cadastrar_okr(self, obj, setor, texto, responsavel, ano, trimestre):
         """cadastra novo objetivo + n krs vinculados ao mesmo"""
         novo_id = obj['id_obj'].iloc[-1] + 1
-        texto = input("digite seu novo objetivo:  ")
-        setor = input("Digite o setor ao qual o OKR pertence:  ")
-        id_setor = 1
-        responsavel = input("Digite o nome da pessoa responsável pelo OKR:  ")
-        ano = input("Digite o ano de vigência do okr:  ")
-        ciclo = input("Digite o ciclo de vigência do okr:  ")
-        novo_obj = DataFrame([novo_id, self.id_time, self.time, id_setor, setor, texto, responsavel, ano, ciclo]).T
+        novo_obj = DataFrame([novo_id, self.id_time, self.time, id_setor, setor, texto, responsavel, ano, trimestre])
         print(novo_obj)
         novo_obj.to_csv("static/okr.csv", mode='a', header=False, index=False)
 
