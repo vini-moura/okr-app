@@ -1,5 +1,5 @@
 {% include "header.html"%}
-
+{% from 'bootstrap5/form.html' import render_form %}
   <body>
     <div class="wrapper" >
 
@@ -12,12 +12,11 @@
           </div>
           <hr>
           <ul class="list-unstyled components">
-            <li class="active"> <a href="#"> <i class="fa fa-bar-chart"></i> Monitorar </a>  </li>
-            <li>  <a href={{url_for('atualizar')}}> <i class="fa fa-pencil-square-o"></i> Atualizar </a>  </li>
+            <li class="active"> <a href="{{url_for('home')}}"> <i class="fa fa-bar-chart"></i> Monitorar </a>  </li>
             <li>  <a href={{url_for('cadastrar')}}> <i class="fa fa-copy"></i> Cadastrar </a>  </li>
-            <li>  <a href="#"> <i class="fa fa-dashboard"></i> Dashboard </a>  </li>
-            <li>  <a href="#">  <i class="fa fa-user-circle-o"></i>  Perfil  </a>  </li>
-            <li>  <a href="#">  <i class="fa fa-paper-plane"></i>  Contact </a>  </li>
+            <li>  <a href="{{url_for('dashboard')}}"> <i class="fa fa-dashboard"></i> Dashboard </a>  </li>
+            <li>  <a href="{{url_for('perfil')}}">  <i class="fa fa-user-circle-o"></i>  Perfil  </a>  </li>
+            <li>  <a href="{{url_for('contato')}}">  <i class="fa fa-paper-plane"></i>  Contacto </a>  </li>
           </ul>
 
       </nav>
@@ -25,42 +24,40 @@
 
       <!-- Page Content -->
       <div id="content">
-
               <nav class="navbar navbar-expand-lg navbar-light bg-light">
                   <div class="container-fluid">
 
                        <div class="m-2" id="rowtext ">
-                            <h3>Vinícius</h3>
-                            <h6>Econômica</h6>
+                            <h3>Usuário</h3>
+                            <h6>Time</h6>
                        </div>
-
                        <div class="container" style="width: 25%; text-align: center">
                             <h6>Progresso Geral</h6>
                             <div class="progress">
                                 <div class="progress-bar bg-success" style="width: {{media_total}}%" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">{{media_total}}</div>
                             </div>
                        </div>
-
+                      <!--
                       <div class="dropdown">
                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                usuario[0].time[0]</button>
                            <ul class="dropdown-menu">
                                usuario[0].time
                                <li><a class="dropdwon-item">usuario[0].time[t]</a></li>
-
                            </ul>
                       </div>
-
+                      -->
                   </div>
               </nav>
 
 
               <!--OKR-->
                <div class="accordion" id="">
+                     {% for okr in okr %}
                     <div class="accordion-item">
                       <h2 class="accordion-header">
                           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                              Objetivo 1: Me formar economista para poder ganhar rios de dinheiro
+                              {{ okr.texto }}
                           </button>
                       </h2>
                       <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
@@ -68,7 +65,7 @@
                               <table class="table" >
                                   <thead>
                                       <tr>
-                                        <th scope="col">#</th>
+
                                         <th scope="col">kr</th>
                                         <th scope="col">Inicial</th>
                                         <th scope="col">Meta</th>
@@ -77,53 +74,27 @@
                                       </tr>
                                   </thead>
                                   <tbody>
+
+                                  {% for kr in krs %}
+                                  {% if kr.id_obj == okr.id %}
                                       <tr>
-                                          <th scope="row">1</th>
-                                          <td>Ser aprovado em todas as disciplinas do semestre</td>
-                                          <td>0</td>
-                                          <td>3</td>
-                                          <td>0</td>
-                                          <td>0</td>
+                                          <td>{{ kr.texto }}</td>
+                                          <td>{{ kr.inicial }}</td>
+                                          <td>{{ kr.meta }}</td>
+                                          <td>{{ kr.atual }}</td>
+                                          <td>{{ kr.porcentagem }}</td>
+                                          <td><a href="{{ url_for('atualizar', id=kr.id) }}">Atualizar</a></td>
+
                                       </tr>
+                                  {% endif %}
+                                  {% endfor %}
                                   </tbody>
                               </table>
                           </div>
                       </div>
                     </div>
+                   {% endfor %}
 
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Objetivo 2: Terminar o App OKR para estorquir burgues safado
-                          </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                          <div class="accordion-body">
-                            <table class="table" >
-                                  <thead>
-                                      <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">kr</th>
-                                        <th scope="col">Inicial</th>
-                                        <th scope="col">Meta</th>
-                                        <th scope="col">Atual</th>
-                                        <th scope="col">%</th>
-                                      </tr>
-                                  </thead>
-                                  <tbody>
-                                      <tr>
-                                          <th scope="row">1</th>
-                                          <td>terminar as páginas essenciais</td>
-                                          <td>0</td>
-                                          <td>5</td>
-                                          <td>0</td>
-                                          <td>0</td>
-                                      </tr>
-                                  </tbody>
-                              </table>
-                          </div>
-                        </div>
-                    </div>
                </div>
 
               <div class="line" id="blankSpace"></div>
