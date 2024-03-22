@@ -14,7 +14,7 @@
           <ul class="list-unstyled components">
             <li class="active"> <a href="{{url_for('home')}}"> <i class="fa fa-bar-chart"></i> Monitorar </a>  </li>
             <li>  <a href={{url_for('cadastrar')}}> <i class="fa fa-copy"></i> Cadastrar </a>  </li>
-            <li>  <a href="{{url_for('dashboard')}}"> <i class="fa fa-dashboard"></i> Dashboard </a>  </li>
+            <li>  <a href="{{url_for('dashboard')}}"> <i class="fa fa-dashboard"></i> Dashboards </a>  </li>
             <li>  <a href="{{url_for('perfil')}}">  <i class="fa fa-user-circle-o"></i>  Perfil  </a>  </li>
             <li>  <a href="{{url_for('contato')}}">  <i class="fa fa-paper-plane"></i>  Contacto </a>  </li>
           </ul>
@@ -83,7 +83,7 @@
                                           <td>{{ kr.meta }}</td>
                                           <td>{{ kr.atual }}</td>
                                           <td>{{ kr.porcentagem }}</td>
-                                          <td><a href="{{ url_for('atualizar', id=kr.id) }}">Atualizar</a></td>
+                                          <td><a href="{{ url_for('atualizar', idp=kr.id_kr) }}">Atualizar</a></td>
 
                                       </tr>
                                   {% endif %}

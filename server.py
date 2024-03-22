@@ -103,25 +103,11 @@ def home():
     return render_template('monitorar.html', okr=okr, krs=krs, media_total=media_total)
 
 
-
-class AtualizandoAqueleKr(FlaskForm):
-    p3 = StringField("Progresso/Problema/Plano")
-    v_atual = FloatField("Valor Atual do KR")
-    submit = SubmitField("Atualizar KR")
-
 @app.route("/atualizar", methods=["GET","POST"])
-def atualizar(id):
-    idpedido = request.args.get("id")
-    form = AtualizandoAqueleKr()
-    if form.validate_on_submit():
-        return redirect(url_for("home"))
-    kr = db.session.execute(db.select(Krs).where(Krs.id_kr == idpedido))
-    #setor = request.form["setor"]
-    #okr = request.form["okr"]
-    #kr = request.form["kr"]
-    #ppp = request.form["ppp"]
-    #v_atual = request.form["v_atual"]
-    return render_template("atualizar.html", kr=kr, form=form)
+def atualizar():
+    idp = request.args.get("idp")
+    kr = db.session.execute(db.select(Krs).where(Krs.id_kr == idp)).scalar()
+    return render_template("atualizar.html", kr=kr)
 
 @app.route('/atualizar2', methods=["POST","GET"])
 def atualizar2():

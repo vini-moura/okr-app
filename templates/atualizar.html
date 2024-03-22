@@ -10,11 +10,11 @@
             </div>
             <hr>
             <ul class="list-unstyled components">
-                <li> <a href={{url_for('home')}}> <i class="fa fa-bar-chart"></i> Monitorar </a>  </li>
+                <li>  <a href="{{url_for('home')}}"> <i class="fa fa-bar-chart"></i> Monitorar </a>  </li>
                 <li>  <a href={{url_for('cadastrar')}}> <i class="fa fa-copy"></i> Cadastrar </a>  </li>
-                <li>  <a href="#"> <i class="fa fa-dashboard"></i> Dashboard </a>  </li>
-                <li>  <a href="#">  <i class="fa fa-user-circle-o"></i>  Perfil  </a>  </li>
-                <li>  <a href="#">  <i class="fa fa-paper-plane"></i>  Contact </a>  </li>
+                <li>  <a href="{{url_for('dashboard')}}"> <i class="fa fa-dashboard"></i> Dashboards </a>  </li>
+                <li>  <a href="{{url_for('perfil')}}">  <i class="fa fa-user-circle-o"></i>  Perfil  </a>  </li>
+                <li>  <a href="{{url_for('contato')}}">  <i class="fa fa-paper-plane"></i>  Contacto </a>  </li>
             </ul>
         </nav>
 
@@ -23,36 +23,23 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <div class="m-2" id="rowtext ">
-                        <h3>Vinícius</h3>
-                        <h6>Econômica</h6>
+                        <h3>Usuário</h3>
+                        <h6>Empresa</h6>
                     </div>
                 </div>
             </nav>
-            {{ render_form(form) }}
+            <h1>KR: {{ kr.texto }}</h1>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <h3>Meta: {{ kr.meta }}</h3>
+                </div>
+                <div class="col">
+                    <h3>Atual: {{ kr.atual }}</h3>
+                </div>
+            </div>
             <form action="{{url_for('home')}}" method="post">
-                <label  class="form-label">Selecione Setor dono do OKR</label>
-                <select class="form-select" aria-label="Default select example" name="setor">
-                  <option value="1">Setor 1</option>
-                  <option value="2">Setor 2</option>
-                  <option value="3">Setor 3</option>
-                  <option value="4">Setor 4</option>
-                </select>
-                <br>
-                <label  class="form-label">Selecione o OKR a ser atualizado</label>
-                <select class="form-select" aria-label="Default select example" name="okr">
-                  <option selected>okr1</option>
-                  <option value="1">okr2</option>
-                  <option value="2">okr3</option>
-                  <option value="3">okr4</option>
-                </select>
-                <br>
-                <label class="form-label">Selecione o KR a ser atualizado</label>
-                <select class="form-select" aria-label="Default select example" name="kr">
-                    <option selected>KR1</option>
-                    <option value="1">KR2</option>
-                    <option value="2">KR3</option>
-                    <option value="3">KR4</option>
-                </select>
+
                 <br>
                 <div class="row">
                     <div class="col-8">
