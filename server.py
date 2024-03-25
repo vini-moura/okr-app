@@ -21,6 +21,13 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///okr.db'
 db = SQLAlchemy(model_class=Base)
 db.init_app(app)
 bootstrap = Bootstrap5(app)
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return db.get_or_404(User, user_id)
+
 
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -66,6 +73,7 @@ with app.app_context():
 @app.route('/')
 def home():
     return render_template("index.html", logged_in=current_user.is_authenticated)
+
 
 @app.route('/register', methods=["GET", "POST"])
 def register():
@@ -116,9 +124,9 @@ def login():
             return redirect(url_for('login'))
         else:
             login_user(user)
-            return redirect(url_for('secrets'))
-
+            return redirect(url_for('monitorar'))
     return render_template("login.html", logged_in=current_user.is_authenticated)
+
 
 @app.route('/logout')
 @login_required
@@ -147,13 +155,24 @@ def monitorar():
 
 @app.route("/atualizar", methods=["GET","POST"])
 def atualizar():
-    idp = request.args.get("idp")
-    kr = db.session.execute(db.select(Krs).where(Krs.id_kr == idp)).scalar()
-    return render_template("atualizar.html", kr=kr)
+    if request.method == "POST":
+        id_kr = request.form.get('kr_id')
+        kr_texto = request.form.get('kr_texto')
+        kr_meta = float(request.form.get('kr_meta'))
+        ppp = request.form.get('ppp')
+        novo_valor = float(request.form.get('novo_valor'))
 
-@app.route('/atualizar2', methods=["POST","GET"])
-def atualizar2():
-    return render_template("atualizar.html")
+        results = db.session.query(Krs).filter_by(id_kr=id_kr).first()
+        results.texto = kr_texto
+        results.meta = kr_meta
+        results.atual = novo_valor
+        db.session.commit()
+        return redirect(url_for('monitorar'))
+
+    idp = request.args.get("idp")
+    kr = db.session.query(Krs).filter_by(id_kr=idp).first()
+
+    return render_template("atualizar.html", kr=kr)
 
 
 @app.route('/cadastrar', methods=["POST","GET"])
