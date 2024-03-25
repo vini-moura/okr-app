@@ -1,6 +1,0 @@
-id_kr,id_obj,texto,tipo,un_medida,inicial,valor_alterar,meta,status,atual
-1,2,Terminar X etapas da versão CLI,a,a,0,5,5.0,novo,2.0
-2,2,Preparar X paginas do WebApp,a,a,0,5,5.0,novo,1
-3,2,Fazer a integração entre front e back ends,a,p,0,1,0.0,novo,
-4,3,terminar 4 paineis: 2 em r e 2 em python,a,a,0,4,4.0,novo,
-5,5,teste federal kr 1,a,a,0,2,2,novo,
