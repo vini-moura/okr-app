@@ -1,0 +1,79 @@
+{% include "header.html"%}
+  <body>
+        <div class="wrapper" >
+
+      <!-- Sidebar-->
+      <nav id="sidebar">
+          <div class="sidebar-header">
+            <h2>Logo Projeto</h2>
+            <strong>TS</strong>
+          </div>
+          <hr>
+          <ul class="list-unstyled components">
+            <li> <a href="{{url_for('home')}}"> <i class="fa fa-bar-chart"></i> Monitorar </a>  </li>
+            <li class="active"> <a href={{url_for('cadastrar')}}> <i class="fa fa-copy"></i> Cadastrar </a>  </li>
+            <li>  <a href="{{url_for('dashboard')}}"> <i class="fa fa-dashboard"></i> Dashboards </a>  </li>
+            <li>  <a href="{{url_for('perfil')}}">  <i class="fa fa-user-circle-o"></i>  Perfil  </a>  </li>
+            <li>  <a href="{{url_for('contato')}}">  <i class="fa fa-paper-plane"></i>  Contacto </a>  </li>
+          </ul>
+      </nav>
+
+
+      <!-- Page Content -->
+      <div id="content">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+              <div class="container-fluid">
+                  <div class="m-2" id="rowtext ">
+                    <h3>{{user_name}}</h3>
+                    <h6>{{user_time}}</h6>
+                  </div>
+              </div>
+          </nav>
+
+         <form action="{{ url_for('cadastrarkr')}}" method="POST">
+            {% for i in range(n_krs) %}
+            <input type="hidden" name="n_krs" value="{{n_krs}}">
+            <input type="hidden" name="id_obj" value="{{ id_obj }}">
+            <hr>
+            <h5>Kr nº {{ i+1 }}</h5>
+            <div class="row">
+               <div class="col-md-6">
+                  <label class="form-label">Digite o texto do novo KR:</label>
+                  <input type="text" name="texto" class="form-control">
+               </div>
+               <div class="col-md-6">
+                  <label class="form-label">Selecione o Tipo de KR</label>
+                  <select id="tipo" name="tipo" class="form-select" aria-label="Default select example">
+                      <option value="1">Aumentar</option>
+                      <option value="2">Diminuir</option>
+                      <option value="3">Fases</option>
+                  </select>
+               </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Selecione a unidade de medida</label>
+                    <select id="uni_med" name="uni_med" class="form-select" aria-label="Default select example">
+                        <option value="1">Inteiro</option>
+                        <option value="2">porcentagem</option>
+                        <option value="3">Fases</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label">Digite o valor inicial do novo KR:</label>
+                    <input type="text" name="valor_inicial" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                     <label class="form-label">Digite a meta do novo KR:</label>
+                     <input type="text" name="meta" class="form-control">
+                </div>
+            </div>
+            {% endfor %}
+            <hr>
+            <button id="btn_submit" type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
+  </div>
+{% include "footer.html"%}

@@ -1,138 +1,80 @@
 {% include "header.html"%}
-  <body>
-        <div class="wrapper" >
-
-      <!-- Sidebar-->
-      <nav id="sidebar">
-
-          <div class="sidebar-header">
-            <h2>Logo Projeto</h2>
-            <strong>TS</strong>
-          </div>
-          <hr>
-          <ul class="list-unstyled components">
-            <li> <a href="{{url_for('home')}}"> <i class="fa fa-bar-chart"></i> Monitorar </a>  </li>
-            <li class="active"> <a href={{url_for('cadastrar')}}> <i class="fa fa-copy"></i> Cadastrar </a>  </li>
-            <li>  <a href="{{url_for('dashboard')}}"> <i class="fa fa-dashboard"></i> Dashboards </a>  </li>
-            <li>  <a href="{{url_for('perfil')}}">  <i class="fa fa-user-circle-o"></i>  Perfil  </a>  </li>
-            <li>  <a href="{{url_for('contato')}}">  <i class="fa fa-paper-plane"></i>  Contacto </a>  </li>
-          </ul>
-
-      </nav>
+<body>
+<div class="wrapper" >
+    <!-- Sidebar-->
+    <nav id="sidebar">
+      <div class="sidebar-header">
+        <h2>Logo Projeto</h2>
+        <strong>TS</strong>
+      </div>
+      <hr>
+      <ul class="list-unstyled components">
+        <li> <a href="{{url_for('home')}}"> <i class="fa fa-bar-chart"></i> Monitorar </a>  </li>
+        <li class="active"> <a href={{url_for('cadastrar')}}> <i class="fa fa-copy"></i> Cadastrar </a>  </li>
+        <li>  <a href="{{url_for('dashboard')}}"> <i class="fa fa-dashboard"></i> Dashboards </a>  </li>
+        <li>  <a href="{{url_for('perfil')}}">  <i class="fa fa-user-circle-o"></i>  Perfil  </a>  </li>
+        <li>  <a href="{{url_for('contato')}}">  <i class="fa fa-paper-plane"></i>  Contacto </a>  </li>
+      </ul>
+    </nav>
 
 
-      <!-- Page Content -->
-      <div id="content">
-
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
-              <div class="container-fluid">
-
-                   <div class="m-2" id="rowtext ">
-                        <h3>Vinícius</h3>
-                        <h6>Econômica</h6>
-                   </div>
-
-                  <div class="dropdown">
-                       <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                           Empresa Econômica</button>
-                       <ul class="dropdown-menu">
-                           <li><a class="dropdwon-item">Setor 1</a></li>
-                           <li><a class="dropdwon-item">Setor 2</a></li>
-                       </ul>
-                  </div>
-
-              </div>
-          </nav>
-
-          <form>
-              <label  class="form-label">Selecione o Setor do Novo OKR</label>
-              <select class="form-select" aria-label="Default select example">
-
-                  <option value="1">Setor 1</option>
-                  <option value="2">Setor 2</option>
-                  <option value="3">Setor 3</option>
-                  <option value="4">Setor 4</option>
-              </select>
-              <br>
-              <label class="form-label">Texto do OKR </label>
-              <textarea class="form-control" rows="2"></textarea>
-              <br>
-
-              <br>
-              <div class="row">
-                  <div class="col-3">
-                      <div class="">
+    <!-- Page Content -->
+    <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+               <div class="m-2" id="rowtext ">
+                    <h3>{{user_name}}</h3>
+                    <h6>{{user_time}}</h6>
+               </div>
+            </div>
+        </nav>
+        <form>
+            <label  class="form-label">Selecione o Setor do Novo OKR</label>
+            <select class="form-select" aria-label="Default select example" name="setor">
+                {% for setor in setores %}
+                    <option value="{{ setor.id_setor }}">{{ setor.setor }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            <label class="form-label">Digite o texto do OKR</label>
+            <textarea class="form-control" rows="2" name="texto"></textarea>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-3">
+                    <div class="">
                         <label class="form-label">Ano</label>
-                        <select id="ano_okr" class="form-select" aria-label="Default select example">
-                          <option value="1">2023</option>
-                          <option value="2">2024</option>
-                          <option value="3">2025</option>
-                          <option value="4">2026</option>
+                        <select id="ano_okr" class="form-select" aria-label="Default select example" name="ano">
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
                         </select>
-                      </div>
-                  </div>
-                  <div class="col-3">
-                      <div class="">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="">
                         <label class="form-label">Trimestre</label>
-                        <select id="tri_okr" class="form-select" aria-label="Default select example">
+                        <select id="tri_okr" class="form-select" aria-label="Default select example" name="ciclo">
                           <option value="1">Jan-Mar</option>
                           <option value="2">Abr-Jun</option>
                           <option value="3">Jul-Set</option>
                           <option value="4">Out-Dez</option>
                         </select>
-                      </div>
-                  </div>
-                  <div class="col-3">
-                      <div class="">
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="">
                         <label class="form-label">Quantos KRs deseja?</label>
                         <input class="form-control" type="number">
-                      </div>
-                  </div>
-              </div>
-              <br>
-              <button id="btn_submit" type="submit" class="btn btn-primary">Submit</button>
-            </form>
-            <h1>
-                <script>
-                    $("document").ready(funciton(){
-                        $("#btn_submit").click(function(){
-                            var setor = $("okr_setor")
-                            var texto = $("okr_texto")
-                            var ano = $("ano_okr")
-                            var trimestre = $("tri_okr").val()
-                            $.ajax({
-                                url: "http://127.0.0.1:5000/cadastrar",
-                                type: "POST",
-                                contentType: "application/json",
-                                data: JSON.stringify({
-                                                        "setor": setor,
-                                                        "texto": texto,
-                                                        "ano": ano,
-                                                        "trimestre": trimestre})
-                            })
-                        })
-                    })
-                </script>
-            </h1>
-
-
-              <div class="line" id=""></div>
-
-              <h2> Ipsum</h2>
-              <p>Ipsum</p>
-
-              <div class="line"></div>
-
-              <h2>Lorem Ipsum Dolor</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-              <div class="line"></div>
-
-              <h3>Lorem Ipsum Dolor</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </div>
-
+                    </div>
+                </div>
+            </div>
+            <br>
+            <button id="btn_submit" type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
+</div>
 
 
 {% include "footer.html"%}
